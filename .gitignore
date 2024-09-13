@@ -6,3 +6,4 @@ origin
 destination
 FolderProjectEnv
 .DS_Store
+__pycache__/
