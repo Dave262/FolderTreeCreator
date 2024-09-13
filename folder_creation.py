@@ -26,7 +26,6 @@ def create_folders(top_folder, days, talent_names):
     string2 = "Bodypack Recorders"
 
 
-
     # Create folders
     for i in range(1, days + 1):
         daily_folder = f"Day_{i}"
