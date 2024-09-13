@@ -5,3 +5,4 @@ movefiles copy.py
 origin
 destination
 FolderProjectEnv
+.DS_Store

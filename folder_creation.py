@@ -6,6 +6,10 @@ from tkinter import filedialog
 
 # Function to create folders based on user input
 
+def open_file():
+    filepath = filedialog.askdirectory(initialdir="/", title="Select a File")
+    print(filepath)
+
 def create_folders(top_folder, days, talent_names):
     if not talent_names or not top_folder:
         messagebox.showerror("Input Error, please fill in all fields")
@@ -21,9 +25,6 @@ def create_folders(top_folder, days, talent_names):
     names = [name.strip() for name in talent_names.split(',')]
     string2 = "Bodypack Recorders"
 
-    open_file():
-    filepath = filedialog.askdirectory(initialdir="/", title="Select a File")
-    print(filepath)
 
 
     # Create folders
