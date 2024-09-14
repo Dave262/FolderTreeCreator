@@ -1,7 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from tkinter import messagebox
-from folder_creation import create_folders, open_file, parent_directory
+from BackendScript import create_folders, open_file, parent_directory
 
 # Initialize the app window with ttkbootstrap's 'superhero' theme
 app = ttk.Window(themename="superhero")
