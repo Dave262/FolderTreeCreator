@@ -46,7 +46,8 @@ def update_directory_label():
     app.update_idletasks()
 def on_choose_folder():
     """ Handle folder selection and update the directory label. """
-    open_file()
+    global parent_directory
+    parent_directory = open_file()
     update_directory_label()
     app.update_idletasks()
 

@@ -9,8 +9,13 @@ parent_directory = ""
 
 def open_file():
     global parent_directory
-    parent_directory = filedialog.askdirectory(initialdir="/home", title="Select a Parent Directory")
-    print(f"Parent directory set to: {parent_directory}")
+    selected_directory = filedialog.askdirectory(initialdir="/home", title="Select a Parent Directory")
+    if selected_directory:
+        parent_directory = selected_directory
+        print(f"Parent directory set to: {parent_directory}")
+    else:
+        print("No fucking directories")
+    return parent_directory
 
 def create_folders(top_folder_name, days, talent_names):
     global parent_directory
