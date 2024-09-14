@@ -4,14 +4,17 @@ from ttkbootstrap.constants import *
 from tkinter import messagebox
 from tkinter import filedialog
 
-# Function to create folders based on user input
+#Global variable to store the selected directory
+parent_directory = ""
 
 def open_file():
-    filepath = filedialog.askdirectory(initialdir="/", title="Select a File")
-    print(filepath)
+    global parent_directory
+    parent_directory = filedialog.askdirectory(initialdir="/home", title="Select a Parent Directory")
+    print(f"Parent directory set to: {parent_directory}")
 
-def create_folders(top_folder, days, talent_names):
-    if not talent_names or not top_folder:
+def create_folders(top_folder_name, days, talent_names):
+    global parent_directory
+    if not talent_names or not parent_directory:
         messagebox.showerror("Input Error, please fill in all fields")
         return
 
@@ -26,10 +29,21 @@ def create_folders(top_folder, days, talent_names):
     string2 = "Bodypack Recorders"
 
 
-    # Create folders
+# Create the top level folder
+
+    top_folder_path = os.path.join(parent_directory, top_folder_name)
+    
+    try:
+        os.makedirs(top_folder_path)
+        print(f"Created top level folder: {top_folder_name}")
+    except FileExistsError:
+        messagebox.showwarning("Folder Exists", f"Top Level Folder'{top_folder_name}' already exists")
+        return
+
+# Create the rest of the fodler structure
     for i in range(1, days + 1):
         daily_folder = f"Day_{i}"
-        path = os.path.join(top_folder, daily_folder)
+        path = os.path.join(top_folder_path, daily_folder)
 
         try:
             os.makedirs(path)
