@@ -1,0 +1,3 @@
+([('main',
+   '/Users/davidross/Documents/GitHub/FolderTreeCreator/dist/main',
+   'EXECUTABLE')],)
