@@ -18,7 +18,6 @@ def open_file():
     return parent_directory # this passes the variable after exiting the function and lets the app update the label with the directory
     
 
-
 def create_folders(top_folder_name, days, talent_names):
     global parent_directory
     if not top_folder_name or not days or not talent_names:
@@ -28,7 +27,7 @@ def create_folders(top_folder_name, days, talent_names):
 # Get user input for days and show error if they dont enter a valid input 
     try:
         days = int(days)
-    except ValueError:
+    except ValueError:  
         messagebox.showerror("Input Error", "Please enter a valid number of days")
         return
     
