@@ -1,6 +1,7 @@
 # colors.py (with hex colors)
 
 BACKGROUND_COLOR = "#3c3836"
+BACKGROUND_DARK = "#1d2021"
 PINK = "#86592d"             
 BLUE = "#458588"            
 BLACK = "#000000"           

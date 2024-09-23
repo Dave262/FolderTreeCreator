@@ -30,11 +30,12 @@ class App(ctk.CTk):
         self.geometry("800x450")
         self.minsize(width=800, height=450)
 
-        self.title("Production Audio Folder Tree Creator")
+        self.title("Production Audio Folder Tree Creator - by David Ross")
 
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=1)
         self.grid_columnconfigure((0, 1), weight=1)
 # FRAMES
+
         frame_right = ctk.CTkFrame(self)
         frame_right.grid(row=0, column=1, rowspan=7, padx=10, pady=10, sticky="nswe")
         frame_right.configure(fg_color=colour.BACKGROUND_COLOR)
@@ -43,24 +44,32 @@ class App(ctk.CTk):
         frame_left.grid(row=0, column=0, rowspan=7, padx=10, pady=10, sticky="nswe")
         frame_left.configure(fg_color=colour.BACKGROUND_COLOR)
 
+        subframe_top = ctk.CTkFrame(frame_left)
+        subframe_top.pack(side = "top", fill = "x", padx = 10, pady = 10, anchor="nw")
+        subframe_top.configure(fg_color="transparent")
+#TEXT INPUT FIELD
+        subframe_mid = ctk.CTkFrame(frame_left)
+        subframe_mid.pack(side = "top", fill = "x", padx = 10, pady = 10, anchor="nw")
+        subframe_mid.configure(fg_color="transparent")
+        subframe_mid.grid_columnconfigure((0, 1), weight=1)
+        
+        subframe_bottom = ctk.CTkFrame(frame_left)
+        subframe_bottom.pack(side = "top", fill = "x", padx = 10, pady = 10, anchor="nw")
+        subframe_bottom.configure(fg_color="transparent")
+        
+
 # Heading
-        label = ctk.CTkLabel(frame_left, text="Production Audio Folder Tree Creator", 
-                             font=("Inclusive Sans", 30, "bold"), text_color=colour.GREEN)
+        label = ctk.CTkLabel(subframe_top, text="Production Audio Folder Tree Creator", 
+                             font=("Inclusive Sans", 25, "bold"), text_color=colour.YELLOW)
 
-
-        label.pack(side = "top", anchor = "w", pady = (20, 10), padx = (10, 20))             
+        label.pack()             
      
 # GREETING
 
-        greeting = ctk.CTkLabel(frame_left, 
+        greeting = ctk.CTkLabel(subframe_top, 
                                 text="Pick a directory, name the folders and hit create!", 
                                 font=("Inclusive Sans", 15, "bold"), text_color=colour.OFF_WHITE)
-        greeting.pack(side = "top", anchor = "w", pady = (0, 20), padx = 15)
-
-        subframe = ctk.CTkFrame(frame_left)
-        subframe.pack(side = "top", fill = "x", padx = 10, pady = 10, anchor="nw")
-        subframe.configure(fg_color=colour.BLUE)
-        subframe.grid_columnconfigure((0, 1), weight=1)
+        greeting.pack()
 
 # RIGHT FRAME 
 
@@ -68,54 +77,51 @@ class App(ctk.CTk):
         choosebutton.pack(side = "top", pady = 30)
         choosebutton.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
 
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Project Folder", text_color=colour.GREEN)
+        chosendirectory_label = ctk.CTkLabel(frame_right, text="Project Folder", text_color=colour.OFF_WHITE)
         chosendirectory_label.pack(side = "top", pady = 5)
 
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Daily Folders", text_color=colour.GREEN)
+        chosendirectory_label = ctk.CTkLabel(frame_right, text="Daily Folders", text_color=colour.OFF_WHITE)
         chosendirectory_label.pack(side = "top", pady = 5)
 
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="BodyPacks", text_color=colour.GREEN)
+        chosendirectory_label = ctk.CTkLabel(frame_right, text="BodyPacks", text_color=colour.OFF_WHITE)
         chosendirectory_label.pack(side = "top", pady = 5)
 
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Optional Folder", text_color=colour.GREEN)
+        chosendirectory_label = ctk.CTkLabel(frame_right, text="Optional Folder", text_color=colour.OFF_WHITE)
         chosendirectory_label.pack(side = "top", pady = 5)
 
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Talent Folders", text_color=colour.GREEN)
-        chosendirectory_label.pack(side = "top", pady = 5)
+        chosendirectory_label = ctk.CTkLabel(frame_right, text="Talent Folders", text_color=colour.OFF_WHITE)
+        chosendirectory_label.pack(side = "top", pady = (5, 30))
 
-        gotofolder_button = ctk.CTkButton(frame_right, text="Go to folder")
-        gotofolder_button.pack(side = "top", pady = (10, 30))
-        gotofolder_button.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
 
 # FOLDER ENTRIES        
-        folder1_entry = ctk.CTkEntry(subframe, placeholder_text="Project folder name?", 
-                                       font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder1_entry.grid(row = 0, column = 0, columnspan = 2, padx = 5, pady = (20, 10), sticky = "ew")
+        folder1_entry = ctk.CTkEntry(subframe_mid, placeholder_text="Project folder name?", 
+                                       font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder1_entry.grid(row = 0, column = 0, columnspan = 2, padx = 10, pady = (20, 10), sticky = "ew")
 
-        folder2_entry = ctk.CTkEntry(subframe, placeholder_text="Daily folder names?",
-                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder2_entry.grid(row = 1, column = 0, padx = 5, pady = 10, sticky = "ew")
+        folder2_entry = ctk.CTkEntry(subframe_mid, placeholder_text="Daily folder names?",
+                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder2_entry.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = "ew")
 
-        folder2_amount_entry = ctk.CTkEntry(subframe, placeholder_text="How many shooting days?",
-                                          font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder2_amount_entry.grid(row = 1, column = 1, padx = 5, pady = 10, sticky ="ew")
+        folder2_amount_entry = ctk.CTkEntry(subframe_mid, placeholder_text="How many shooting days?",
+                                          font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder2_amount_entry.grid(row = 1, column = 1, padx = 10, pady = 10, sticky ="ew")
 
-        folder3_entry = ctk.CTkEntry(subframe, placeholder_text="Bodypack folder name?",
-                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder3_entry.grid(row = 2, column = 0,columnspan = 2, padx = 5, pady = 10, sticky = "ew")
+        folder3_entry = ctk.CTkEntry(subframe_mid, placeholder_text="Bodypack folder name?",
+                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder3_entry.grid(row = 2, column = 0,columnspan = 2, padx = 10, pady = 10, sticky = "ew")
 
-        folder4_entry = ctk.CTkEntry(subframe, placeholder_text="Optional folder inside each daily?",
-                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder4_entry.grid(row = 3, column = 0,columnspan = 2, padx = 5, pady = 10, sticky = "ew")
+        folder4_entry = ctk.CTkEntry(subframe_mid, placeholder_text="Optional folder inside each daily?",
+                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder4_entry.grid(row = 3, column = 0,columnspan = 2, padx = 10, pady = 10, sticky = "ew")
 
-        folder5_entry = ctk.CTkEntry(subframe, placeholder_text="Talent names (comma separated)?",
-                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.OFF_WHITE)
-        folder5_entry.grid(row = 4, column = 0,columnspan = 2, padx = 5, pady = (10, 20), sticky = "ew")
+        folder5_entry = ctk.CTkEntry(subframe_mid, placeholder_text="Talent names (comma separated)?",
+                                     font=("Inclusive Sans", 12, "bold"), placeholder_text_color=colour.GREY)
+        folder5_entry.grid(row = 4, column = 0,columnspan = 2, padx = 10, pady = (10, 20), sticky = "ew")
 
-        directory_label = ctk.CTkLabel(frame_left, 
+        directory_label = ctk.CTkLabel(subframe_bottom, 
                                 text=f"Your folder tree will be in: ", 
                                 font=("Inclusive Sans", 15, "bold"), text_color=colour.OFF_WHITE)
-        directory_label.pack(anchor = "w", padx = "15", pady = (0, 15))
+        directory_label.pack(padx = "15")
 
 
         def on_submit():
@@ -135,9 +141,14 @@ class App(ctk.CTk):
                                )
 
 
-        create_button = ctk.CTkButton(frame_right, text="Create Folder Tree", command=on_submit)
-        create_button.pack(side = "top", pady = (10, 30))
-        create_button.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
+        create_button = ctk.CTkButton(frame_right, text="Create folder tree", command=on_submit)
+        create_button.pack(side = "top", pady = 10)
+        create_button.configure(fg_color = colour.YELLOW, text_color=colour.OFF_WHITE)
+
+
+        gotofolder_button = ctk.CTkButton(frame_right, text="Go to folder")
+        gotofolder_button.pack(side = "top", pady = 10)
+        gotofolder_button.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
 
 
 if __name__ == "__main__":
