@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import colour
 from backend import DirPath, user_select_dir, create_folders
+
 # from backend import open_file
 
 ctk.set_appearance_mode("dark")
@@ -15,7 +16,7 @@ class App(ctk.CTk):
         
         def update_directory_label():      
                 print(f"Your folder tree will be in: {DirPath}")
-                directory_label.configure(text=f"Your folder tree will be in: {DirPath}")
+                directory_label.configure(text=f"Parent folder: {DirPath}",)
                 app.update_idletasks()
 
         def user_dir():
@@ -74,23 +75,9 @@ class App(ctk.CTk):
 # RIGHT FRAME 
 
         choosebutton = ctk.CTkButton(frame_right, text="choose directory", command=user_dir)
-        choosebutton.pack(side = "top", pady = 30)
+        choosebutton.pack(side = "top", pady = 10)
         choosebutton.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
-
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Project Folder", text_color=colour.OFF_WHITE)
-        chosendirectory_label.pack(side = "top", pady = 5)
-
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Daily Folders", text_color=colour.OFF_WHITE)
-        chosendirectory_label.pack(side = "top", pady = 5)
-
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="BodyPacks", text_color=colour.OFF_WHITE)
-        chosendirectory_label.pack(side = "top", pady = 5)
-
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Optional Folder", text_color=colour.OFF_WHITE)
-        chosendirectory_label.pack(side = "top", pady = 5)
-
-        chosendirectory_label = ctk.CTkLabel(frame_right, text="Talent Folders", text_color=colour.OFF_WHITE)
-        chosendirectory_label.pack(side = "top", pady = (5, 30))
+ 
 
 
 # FOLDER ENTRIES        
@@ -119,19 +106,20 @@ class App(ctk.CTk):
         folder5_entry.grid(row = 4, column = 0,columnspan = 2, padx = 10, pady = (10, 20), sticky = "ew")
 
         directory_label = ctk.CTkLabel(subframe_bottom, 
-                                text=f"Your folder tree will be in: ", 
-                                font=("Inclusive Sans", 15, "bold"), text_color=colour.OFF_WHITE)
+                                text=f"No directory selected...", 
+                                font=("Inclusive Sans", 15, "bold"), text_color=colour.OFF_WHITE,
+                                wraplength=500, justify="center")
         directory_label.pack(padx = "15")
 
 
         def on_submit():
                 project_folder = folder1_entry.get()
-                daily_folder = folder2_amount_entry.get()
+                daily_folder = folder2_entry.get() or "Day"
                 days_number_input = folder2_amount_entry.get()
-                bodypack_name = folder3_entry.get()
+                bodypack_name = folder3_entry.get() or "Bodypack Recorders"
                 optional_folder_name = folder4_entry.get()
-                talent_folder = folder5_entry.get()
-                
+                talent_folder = folder5_entry.get()         
+
                 create_folders(project_folder, 
                                daily_folder, 
                                days_number_input, 
@@ -139,17 +127,20 @@ class App(ctk.CTk):
                                optional_folder_name, 
                                talent_folder
                                )
+        def copy_path(text):
+                app.clipboard_clear()
+                app.clipboard_append(text)
+                app.update()
+                print(f"Copied {text} to the clipboard")
 
 
         create_button = ctk.CTkButton(frame_right, text="Create folder tree", command=on_submit)
-        create_button.pack(side = "top", pady = 10)
+        create_button.pack(side = "top", pady=10)
         create_button.configure(fg_color = colour.YELLOW, text_color=colour.OFF_WHITE)
 
-
-        gotofolder_button = ctk.CTkButton(frame_right, text="Go to folder")
-        gotofolder_button.pack(side = "top", pady = 10)
-        gotofolder_button.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
-
+        copy_button = ctk.CTkButton(frame_right, text="Copy path", command=lambda: copy_path(DirPath))
+        copy_button.pack(side="bottom", pady=10)
+        copy_button.configure(fg_color = colour.BLUE, text_color=colour.OFF_WHITE)
 
 if __name__ == "__main__":
         app = App()
