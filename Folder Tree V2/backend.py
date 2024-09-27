@@ -30,7 +30,6 @@ def create_folders(projectinput, daily_name, days_number_input, bodypack_name, o
         return
     
     names = [name.strip() for name in talent_folder.split(',')]
-    # bodypack_name = "Bodypack Recorders"
 
     top_folder = os.path.join(DirPath, projectinput)
 
@@ -40,10 +39,7 @@ def create_folders(projectinput, daily_name, days_number_input, bodypack_name, o
     except FileExistsError:
         messagebox.showwarning(f"Top Level Folder'{projectinput}' already exists")
         return
-    
-    # for number in range(1, days + 1):
-    #     daily_folder = f"Day_{number}"
-    #     daily_folder_path = os.path.join(top_folder, daily_folder)
+
 
     for number in range(1, days + 1):
         daily_folder = f"{daily_name}_{number}"  # Use the custom or default daily folder name
