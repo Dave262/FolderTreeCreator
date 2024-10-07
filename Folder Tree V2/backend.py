@@ -2,6 +2,8 @@ import os
 from tkinter import messagebox, filedialog
 
 DirPath = ""
+my_list = ""
+
 
 def user_select_dir():
     global DirPath
@@ -64,8 +66,12 @@ def create_folders(projectinput, daily_name, days_number_input, bodypack_name, o
                 talent_folder_path = os.path.join(bodypack_path, name)
                 os.makedirs(talent_folder_path)
                 print(f"Created folder: {daily_folder}:{bodypack_name}:{name}")
+         
+         
             
         except: print("You're not really taking advantage of this app")
-
+    
+    
     messagebox.showinfo("Success", "Folders created successfully")
+
 
