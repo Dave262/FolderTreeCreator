@@ -7,7 +7,10 @@ def get_mounted_drives():
         import string
         drives = [f"{d}:\\" for d in string.ascii_uppercase if os.path.exists(f"{d}:\\")]
     else:  # For Unix/Linux
-        drives = [os.path.join('/mnt', d) for d in os.listdir('/mnt') if os.path.ismount(os.path.join('/mnt', d))]
+        if os.path.exists('/mnt'):
+            drives = [os.path.join('/mnt', d) for d in os.listdir('/mnt') if os.path.ismount(os.path.join('/mnt', d))]
+        else:
+            drives = []
     return drives
 
 # def update_drive_list():
